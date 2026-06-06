@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A clean, modern, dependency-free starter — because you deserve better than a blank repo." />
+  <title>You Deserve Better</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="brand" href="#top">
+      <span class="brand-mark">◆</span>
+      <span>Better</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#start">Get Started</a>
+      <a class="nav-cta" href="https://github.com/eldom93/a" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">◐</button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <span class="eyebrow reveal">Freshly scaffolded</span>
+      <h1 class="reveal">
+        You deserve <span class="grad">better</span> than a blank repo.
+      </h1>
+      <p class="lead reveal">
+        A zero-dependency starter you can actually build on — modern design,
+        smooth interactions, and clean code. No build step, no install, just open and go.
+      </p>
+      <div class="hero-actions reveal">
+        <a class="btn btn-primary" href="#start">Get started</a>
+        <a class="btn btn-ghost" href="#features">See what's inside</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="stat"><strong data-count="0">0</strong><span>dependencies</span></div>
+        <div class="stat"><strong data-count="100">0</strong><span>% vanilla</span></div>
+        <div class="stat"><strong data-count="3">0</strong><span>files to ship</span></div>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <h2 class="section-title reveal">Built right, from the start</h2>
+      <div class="grid">
+        <article class="card reveal">
+          <div class="card-icon">⚡</div>
+          <h3>Zero setup</h3>
+          <p>Pure HTML, CSS, and JavaScript. No bundlers, no node_modules, no waiting.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon">🎨</div>
+          <h3>Modern design</h3>
+          <p>Thoughtful typography, fluid spacing, gradients, and motion that feels alive.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon">🌗</div>
+          <h3>Dark &amp; light</h3>
+          <p>A built-in theme toggle that remembers your choice across visits.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon">📱</div>
+          <h3>Responsive</h3>
+          <p>Looks sharp from a phone to an ultrawide, with a layout that just adapts.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon">♿</div>
+          <h3>Accessible</h3>
+          <p>Semantic markup, keyboard-friendly, and respects reduced-motion preferences.</p>
+        </article>
+        <article class="card reveal">
+          <div class="card-icon">🚀</div>
+          <h3>Ready to ship</h3>
+          <p>Deploy to any static host in seconds. It's already production-shaped.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="start" class="start">
+      <div class="start-card reveal">
+        <h2 class="section-title">Make it yours</h2>
+        <p>Clone it, open <code>index.html</code>, and start editing. That's the whole workflow.</p>
+        <pre class="code"><code>git clone https://github.com/eldom93/a.git
+cd a
+# open index.html in your browser — done</code></pre>
+        <a class="btn btn-primary" href="https://github.com/eldom93/a" target="_blank" rel="noopener">Open the repo</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Crafted with care · because <em>better</em> is the baseline.</span>
+    <span class="year" id="year"></span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
