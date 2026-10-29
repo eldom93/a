@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="A quiet, modern starter page. Zero dependencies, dark-mode aware, accessible."
+    />
+    <title>a — a quiet starter</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='24' font-size='24' font-family='system-ui'%3Ea%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" role="banner">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="#top" aria-label="Home">
+          <span class="brand-mark" aria-hidden="true">a</span>
+          <span class="brand-name">a quiet starter</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#get-started">Get started</a></li>
+        </ul>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          type="button"
+          aria-label="Toggle color theme"
+          aria-pressed="false"
+        >
+          <span class="theme-icon" aria-hidden="true"></span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero">
+        <p class="eyebrow">A one-letter repo, upgraded.</p>
+        <h1 class="headline">
+          You deserve better than
+          <span class="headline-accent">&ldquo;a&rdquo;</span>.
+        </h1>
+        <p class="lede">
+          A tiny, modern starting point for whatever this repo turns into.
+          No frameworks, no build step, no 400&nbsp;MB of
+          <code>node_modules</code>. Just HTML, CSS, and a single
+          progressively-enhanced script.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#get-started">Get started</a>
+          <a class="btn btn-ghost" href="#features">See what's inside</a>
+        </div>
+        <dl class="stat-row" aria-label="Project stats">
+          <div class="stat">
+            <dt>Dependencies</dt>
+            <dd id="stat-deps">0</dd>
+          </div>
+          <div class="stat">
+            <dt>Build step</dt>
+            <dd>none</dd>
+          </div>
+          <div class="stat">
+            <dt>Page weight</dt>
+            <dd>&lt; 20&nbsp;KB</dd>
+          </div>
+          <div class="stat">
+            <dt>Dark mode</dt>
+            <dd>built&#8209;in</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section id="about" class="section">
+        <h2>About</h2>
+        <p>
+          This repository was previously a <code>README.md</code> whose entire
+          contents were the single character <code>a</code>. That's a fine
+          placeholder, but a weird first impression. This starter replaces it
+          with a small landing page you can actually open in a browser and
+          then shape into whatever you need: a personal site, a project
+          homepage, documentation, a scratch pad for ideas.
+        </p>
+      </section>
+
+      <section id="features" class="section">
+        <h2>What's inside</h2>
+        <ul class="feature-grid" role="list">
+          <li class="feature">
+            <h3>Zero dependencies</h3>
+            <p>
+              No npm, no bundler, no lockfile. Open
+              <code>index.html</code> and it works.
+            </p>
+          </li>
+          <li class="feature">
+            <h3>Dark mode</h3>
+            <p>
+              Follows your OS preference by default, with a toggle that
+              remembers your choice in <code>localStorage</code>.
+            </p>
+          </li>
+          <li class="feature">
+            <h3>Accessible by default</h3>
+            <p>
+              Semantic landmarks, visible focus rings, a skip link, and
+              respect for <code>prefers-reduced-motion</code>.
+            </p>
+          </li>
+          <li class="feature">
+            <h3>Responsive</h3>
+            <p>
+              Fluid typography and a layout that reads cleanly from a phone
+              up to a wide display.
+            </p>
+          </li>
+          <li class="feature">
+            <h3>Modern CSS</h3>
+            <p>
+              Custom properties for theming, logical properties, and
+              <code>color-mix()</code> &mdash; no preprocessor required.
+            </p>
+          </li>
+          <li class="feature">
+            <h3>Easy to throw away</h3>
+            <p>
+              Three files. Delete anything you don't like. There's nothing
+              clever hiding anywhere.
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <section id="get-started" class="section">
+        <h2>Get started</h2>
+        <ol class="steps">
+          <li>
+            Clone the repo and open <code>index.html</code> in your browser,
+            or serve the folder locally:
+            <pre><code>python3 -m http.server 8000</code></pre>
+          </li>
+          <li>
+            Edit <code>index.html</code> to say what this project actually is.
+          </li>
+          <li>
+            Tweak colors and spacing in <code>styles.css</code> &mdash; the
+            theme is driven by CSS custom properties at the top of the file.
+          </li>
+          <li>
+            Keep, extend, or delete <code>script.js</code>. The page works
+            without it; it only adds the theme toggle and small niceties.
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <p>
+        Built with HTML, CSS, and a little JavaScript.
+        <span class="footer-sep" aria-hidden="true">&middot;</span>
+        <a href="https://github.com/eldom93/a">Source</a>
+      </p>
+    </footer>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>

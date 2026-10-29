@@ -1,51 +1,58 @@
-# Welcome
+# a — a quiet starter
 
-You deserve better than a README that just says "a" — so here is a real one.
+A tiny, zero-dependency landing page you can open in a browser and shape
+into whatever this repo turns into. Previously, this `README.md` contained
+the single character `a`. You deserved better than that.
 
-This repository is currently a blank canvas. Use it for whatever you'd like:
-a quick experiment, a new project, a scratchpad for ideas. The structure below
-is a small, opinionated starting point that you can keep or throw away.
-
-## Getting started
-
-1. Clone the repo:
-
-   ```bash
-   git clone <this-repo-url>
-   cd <this-repo>
-   ```
-
-2. Decide what this project is going to be. A few prompts to help:
-   - What problem are you trying to solve?
-   - Who is the user?
-   - What is the smallest thing you could build that would be useful?
-
-3. Pick a stack and replace this README with something specific to your project.
-
-## Suggested layout
-
-A typical project that grows out of this repo might look like:
+## What's in here
 
 ```
 .
-├── README.md          # what the project is and how to run it
-├── src/               # source code
-├── tests/             # tests
-└── docs/              # longer-form documentation
+├── index.html    # the page itself
+├── styles.css    # theming (CSS custom properties), layout, dark mode
+├── script.js     # progressive enhancement: theme toggle + a small nicety
+└── README.md     # you are here
 ```
 
-None of that exists yet — add it as you go.
+That's the whole project. There is no build step, no package manager, no
+`node_modules`.
 
-## Contributing
+## Run it
 
-If this turns into something collaborative, consider adding:
+Open `index.html` directly in your browser, or serve the folder locally:
 
-- A `LICENSE` file so others know how they can use the code.
-- A `CONTRIBUTING.md` describing how to propose changes.
-- A `CODE_OF_CONDUCT.md` if you expect outside contributors.
+```bash
+python3 -m http.server 8000
+# then open http://localhost:8000
+```
+
+Any static file server will do.
+
+## Features
+
+- **Zero dependencies.** No npm, no bundler, no lockfile.
+- **Dark mode.** Follows your OS preference by default, with a toggle that
+  persists your choice in `localStorage`.
+- **Accessible.** Semantic landmarks, a skip link, visible focus rings, and
+  respect for `prefers-reduced-motion`.
+- **Responsive.** Fluid typography with `clamp()` and a layout that reads
+  cleanly from phone to wide display.
+- **Modern CSS.** CSS custom properties for theming, logical properties,
+  and `color-mix()` — no preprocessor required.
+
+## Customize
+
+- **Colors and spacing** live as CSS custom properties at the top of
+  `styles.css`. Change `--accent` once and the whole page follows.
+- **Copy and sections** live in `index.html`. Delete anything you don't
+  need; nothing in the CSS or JS depends on a specific section being
+  present.
+- **Scripts** in `script.js` are strictly progressive enhancement. The
+  page works fully with JavaScript disabled.
 
 ## License
 
-No license has been chosen yet. Until one is added, default copyright applies
-and others do not have permission to use, modify, or distribute this code.
-See [choosealicense.com](https://choosealicense.com/) for help picking one.
+No license has been chosen yet. Until one is added, default copyright
+applies and others do not have permission to use, modify, or distribute
+this code. See [choosealicense.com](https://choosealicense.com/) for help
+picking one.
