@@ -68,6 +68,7 @@
   <div class="tabs">
     <div class="tab active" data-tab="today">Today</div>
     <div class="tab" data-tab="cash">Cash Count</div>
+    <div class="tab" data-tab="shift">Shift Log</div>
     <div class="tab" data-tab="history">History</div>
     <div class="tab" data-tab="money">Money Finder</div>
     <div class="tab" data-tab="pitch">My Pitch</div>
@@ -120,6 +121,48 @@
       <button class="go" id="c_calc">Calculate over / short</button>
       <div class="kpi" id="c_kpi" style="margin-top:14px"></div>
       <div id="c_flags"></div>
+    </div>
+  </section>
+
+  <!-- SHIFT LOG -->
+  <section id="shift" class="hide">
+    <div class="card">
+      <h2>Shift protection log</h2>
+      <p class="hint">Your own timestamped record of every drawer handoff. If anyone ever points a finger, these are your receipts. Saved on this device only.</p>
+      <div class="grid2">
+        <div><label>Date</label><input type="date" id="s_date"></div>
+        <div><label>Your name / ID</label><input id="s_name" placeholder="you"></div>
+      </div>
+      <div class="grid2">
+        <div><label>Shift start</label><input type="time" id="s_start"></div>
+        <div><label>Shift end</label><input type="time" id="s_end"></div>
+      </div>
+      <div class="grid2">
+        <div><label>Opening drawer count ($)</label><input type="number" step="0.01" id="s_open" placeholder="200.00"></div>
+        <div><label>Closing drawer count ($)</label><input type="number" step="0.01" id="s_close" placeholder="200.00"></div>
+      </div>
+      <div class="grid2">
+        <div><label>Your sales rung ($)</label><input type="number" step="0.01" id="s_sales" placeholder="0.00"></div>
+        <div><label>Cash drops ($)</label><input type="number" step="0.01" id="s_drops" placeholder="0.00"></div>
+      </div>
+      <div class="grid2">
+        <div><label>Took drawer from</label><input id="s_from" placeholder="name on handoff"></div>
+        <div><label>Handed drawer to</label><input id="s_to" placeholder="name on handoff"></div>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;margin-top:12px"><input type="checkbox" id="s_counted" style="width:auto"> I counted this drawer myself at handoff</label>
+      <label>Witness (optional)</label><input id="s_witness" placeholder="who verified the count with you">
+      <label>Notes</label><input id="s_notes" placeholder="anything odd — who was on register, corrections, etc.">
+      <button class="go" id="s_save">Save shift (stamps the time)</button>
+      <div id="s_result"></div>
+    </div>
+    <div class="card">
+      <h2>My saved shifts</h2>
+      <p class="hint">Newest first. Export keeps a copy off the device — email it to yourself to be safe.</p>
+      <div id="s_table"></div>
+      <div class="row-actions">
+        <button class="go ghost" id="s_export">Export CSV</button>
+        <button class="go ghost" id="s_clear">Clear shift log</button>
+      </div>
     </div>
   </section>
 
@@ -209,9 +252,10 @@ const saveAll = d => localStorage.setItem(KEY, JSON.stringify(d));
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
   t.classList.add('active');
-  ['today','cash','history','money','pitch'].forEach(s=>$(s).classList.add('hide'));
+  ['today','cash','shift','history','money','pitch'].forEach(s=>$(s).classList.add('hide'));
   $(t.dataset.tab).classList.remove('hide');
   if(t.dataset.tab==='history') renderHistory();
+  if(t.dataset.tab==='shift') renderShift();
 });
 
 $('t_date').valueAsDate = new Date();
@@ -356,6 +400,58 @@ raiseLine+" "+gapLine+"\n\n"+
   $('p_copy').classList.remove('hide');
 };
 $('p_copy').onclick=()=>{navigator.clipboard.writeText($('p_out').textContent).then(()=>{$('p_copy').textContent='Copied ✓';setTimeout(()=>$('p_copy').textContent='Copy to clipboard',1500);});};
+
+/* SHIFT LOG */
+const SKEY='shift_log_v1';
+const loadShifts=()=>{ try{return JSON.parse(localStorage.getItem(SKEY)||'[]');}catch(e){return [];} };
+const saveShifts=d=>localStorage.setItem(SKEY,JSON.stringify(d));
+$('s_date').valueAsDate=new Date();
+function shiftResult(e){
+  if(e.open==null||e.sales==null||e.close==null) return null;
+  const exp=e.open+(e.sales||0)-(e.drops||0);
+  const diff=e.close-exp;
+  if(Math.abs(diff)<2) return {word:'Balanced',cls:'good',ic:'✓',exp:exp};
+  if(diff<0) return {word:'Short '+money(Math.abs(diff)),cls:'bad',ic:'!',exp:exp};
+  return {word:'Over '+money(diff),cls:'warnb',ic:'▲',exp:exp};
+}
+$('s_save').onclick=()=>{
+  const now=new Date();
+  const e={saved:now.toISOString(),savedLocal:now.toLocaleString(),
+    date:$('s_date').value,name:$('s_name').value,start:$('s_start').value,end:$('s_end').value,
+    open:num('s_open'),close:num('s_close'),sales:num('s_sales'),drops:num('s_drops'),
+    from:$('s_from').value,to:$('s_to').value,counted:$('s_counted').checked,
+    witness:$('s_witness').value,notes:$('s_notes').value};
+  if(!e.date){alert('Pick a date');return;}
+  const data=loadShifts(); data.push(e); saveShifts(data);
+  const r=shiftResult(e);
+  let extra='';
+  if(r) extra='<div class="flag '+r.cls+'"><span class="ic">'+r.ic+'</span><div>Expected close '+money(r.exp)+' · counted '+money(e.close)+' · <strong>'+r.word+'</strong></div></div>';
+  $('s_result').innerHTML='<div class="flag good"><span class="ic">✓</span><div>Saved &amp; timestamped <strong>'+e.savedLocal+'</strong>. This is now your dated record.</div></div>'+extra;
+  renderShift();
+};
+function renderShift(){
+  const data=loadShifts(); const t=$('s_table');
+  if(!data.length){t.innerHTML='<p class="muted">No shifts logged yet.</p>';return;}
+  let rows='<table><tr><th>Date</th><th>Time</th><th>Open</th><th>Close</th><th>From&rarr;To</th><th>Result</th></tr>';
+  data.slice().reverse().forEach(e=>{
+    const r=shiftResult(e);
+    const result=r?r.word.toLowerCase():'—';
+    const cls=r?(r.cls==='good'?'up':(r.cls==='bad'?'down':'warn')):'';
+    const time=(e.start||'')+(e.end?'–'+e.end:'');
+    rows+='<tr><td>'+e.date+'</td><td>'+(time||'—')+'</td><td>'+(e.open!=null?money(e.open):'—')+'</td>'+
+      '<td>'+(e.close!=null?money(e.close):'—')+'</td><td>'+((e.from||'?')+'&rarr;'+(e.to||'?'))+'</td>'+
+      '<td class="'+cls+'">'+result+'</td></tr>';
+  });
+  rows+='</table>'; t.innerHTML=rows;
+}
+$('s_clear').onclick=()=>{if(confirm('Delete all shift logs?')){saveShifts([]);renderShift();}};
+$('s_export').onclick=()=>{
+  const data=loadShifts(); if(!data.length){alert('Nothing to export');return;}
+  const esc=v=>{v=(v==null?'':String(v)); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+  const head='saved_timestamp,date,name,start,end,opening,closing,sales_rung,drops,took_from,handed_to,counted_self,witness,notes\n';
+  const body=data.map(e=>[e.savedLocal,e.date,e.name,e.start,e.end,e.open,e.close,e.sales,e.drops,e.from,e.to,e.counted?'yes':'no',e.witness,e.notes].map(esc).join(',')).join('\n');
+  const blob=new Blob([head+body],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='shift-log.csv'; a.click();
+};
 </script>
 </body>
 </html>

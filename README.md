@@ -11,6 +11,10 @@ nothing is uploaded anywhere.
   labor % of sales, with plain-English flags (e.g. an impossible 200% food cost = a data error).
 - **Cash Count** — reconcile your drawer the way the register does and get your over/short,
   with guidance on what to check.
+- **Shift Log** — a timestamped record of every drawer handoff: opening/closing counts, your
+  sales rung, drops, who you took the drawer from and handed it to, an optional witness, and
+  notes. It auto-computes over/short per shift and exports to CSV so you always have your own
+  dated receipts if a discrepancy ever gets pinned on the wrong person.
 - **History** — every saved day in one table, with bad data flagged so it stands out. Export to CSV.
 - **Money Finder** — the three biggest money levers (average ticket, drink attachment, labor),
   with sliders that show the **yearly dollar impact** using your store's real numbers.
