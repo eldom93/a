@@ -71,6 +71,7 @@
     <div class="tab" data-tab="shift">Shift Log</div>
     <div class="tab" data-tab="history">History</div>
     <div class="tab" data-tab="money">Money Finder</div>
+    <div class="tab" data-tab="real">Real Sales</div>
     <div class="tab" data-tab="pitch">My Pitch</div>
   </div>
 
@@ -217,6 +218,28 @@
     </div>
   </section>
 
+  <!-- REAL SALES ESTIMATOR -->
+  <section id="real" class="hide">
+    <div class="card">
+      <h2>Real Sales Estimator</h2>
+      <p class="hint">Bread doesn't lie. Estimate a store's true daily sales from how much bread is actually prepped, and compare it to what the register reports. Estimate only — tune the assumptions to your store.</p>
+      <div class="grid2">
+        <div><label>Bread prepped / pulled (loaves)</label><input type="number" id="r_bread" value="80"></div>
+        <div><label>Leftover + waste + staff (loaves)</label><input type="number" id="r_waste" value="8"></div>
+      </div>
+      <div class="grid2">
+        <div><label>Sandwich $ per loaf sold</label><input type="number" step="0.25" id="r_price" value="9.00"></div>
+        <div><label>Sandwiches as % of sales</label><input type="number" id="r_share" value="72"></div>
+      </div>
+      <label>Reported net sales for this store ($/day) — optional, to see the gap</label>
+      <input type="number" step="0.01" id="r_reported" placeholder="e.g. 774.00">
+      <label>Days open per week</label><input type="number" id="r_days" value="7">
+      <div class="kpi" id="r_kpi" style="margin-top:14px"></div>
+      <div id="r_flags"></div>
+      <p class="sm muted" style="margin-top:12px">Assumptions: one loaf = one footlong-equivalent. "Sandwich $ per loaf" is the sandwich-only price; dividing by the sandwich share adds drinks/chips/cookies to reach total sales. Tune all four to match your store. This is a cross-check, not proof.</p>
+    </div>
+  </section>
+
   <!-- PITCH -->
   <section id="pitch" class="hide">
     <div class="card">
@@ -252,10 +275,11 @@ const saveAll = d => localStorage.setItem(KEY, JSON.stringify(d));
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
   t.classList.add('active');
-  ['today','cash','shift','history','money','pitch'].forEach(s=>$(s).classList.add('hide'));
+  ['today','cash','shift','history','money','real','pitch'].forEach(s=>$(s).classList.add('hide'));
   $(t.dataset.tab).classList.remove('hide');
   if(t.dataset.tab==='history') renderHistory();
   if(t.dataset.tab==='shift') renderShift();
+  if(t.dataset.tab==='real') calcReal();
 });
 
 $('t_date').valueAsDate = new Date();
@@ -452,6 +476,38 @@ $('s_export').onclick=()=>{
   const body=data.map(e=>[e.savedLocal,e.date,e.name,e.start,e.end,e.open,e.close,e.sales,e.drops,e.from,e.to,e.counted?'yes':'no',e.witness,e.notes].map(esc).join(',')).join('\n');
   const blob=new Blob([head+body],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='shift-log.csv'; a.click();
 };
+
+/* REAL SALES ESTIMATOR */
+function calcReal(){
+  const bread=num('r_bread')||0, waste=num('r_waste')||0, price=num('r_price')||0,
+        share=(num('r_share')||72)/100, reported=num('r_reported'), days=num('r_days')||7, weeksYr=52;
+  const sold=Math.max(bread-waste,0);
+  const sandwichRev=sold*price;
+  const total= share>0 ? sandwichRev/share : sandwichRev;
+  const yearly=total*days*weeksYr;
+  const k=$('r_kpi'); const f=$('r_flags'); if(!k) return; f.innerHTML='';
+  let tiles=
+    tile('Loaves sold', sold.toFixed(0),'')+
+    tile('Est. real sales / day', money0(total),'')+
+    tile('Est. real sales / yr', money0(yearly),'');
+  if(reported!=null){
+    const gap=total-reported, gapYr=gap*days*weeksYr;
+    tiles+=tile('Reported / day', money(reported),'')+
+      tile('Gap / day', money0(gap), gap>=0?'unreported?':'over-reported', gap>0?'down':'up')+
+      tile('Gap / yr', money0(gapYr),'', gap>0?'down':'up');
+  }
+  k.innerHTML=tiles;
+  if(reported!=null){
+    const gap=total-reported, pct=reported?gap/reported*100:0;
+    if(gap>reported*0.15) f.innerHTML='<div class="flag bad"><span class="ic">!</span><div><strong>Bread implies ~'+money0(total)+'/day but only '+money(reported)+' is reported — about a '+pct.toFixed(0)+'% gap ('+money0(gap*days*weeksYr)+'/yr).</strong> Bigger than normal waste/estimate slop: more product is leaving than sales account for. Worth understanding why.</div></div>';
+    else if(gap < -reported*0.15) f.innerHTML='<div class="flag warnb"><span class="ic">▲</span><div>Reported sales are well above what this bread implies — either lots of non-bread sales (salads, drinks, catering) or the bread number is low.</div></div>';
+    else f.innerHTML='<div class="flag good"><span class="ic">✓</span><div>Bread and reported sales line up within normal estimate range. Nothing jumps out.</div></div>';
+  } else {
+    f.innerHTML='<p class="muted sm">Enter the reported sales for this same store to see the gap.</p>';
+  }
+}
+['r_bread','r_waste','r_price','r_share','r_reported','r_days'].forEach(id=>$(id).addEventListener('input',calcReal));
+calcReal();
 </script>
 </body>
 </html>
