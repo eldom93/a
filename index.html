@@ -270,6 +270,23 @@ const num = id => { const v = parseFloat($(id).value); return isNaN(v)?null:v; }
 const KEY = 'store_numbers_v1';
 const loadAll = () => { try{return JSON.parse(localStorage.getItem(KEY)||'[]');}catch(e){return [];} };
 const saveAll = d => localStorage.setItem(KEY, JSON.stringify(d));
+/* __store_numbers_pure__ */
+const DAY_KEYS = ['sales','guests','drink','fc','hours','open','wage'];
+function localISODate(d){
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return y + '-' + m + '-' + day;
+}
+function mergeDay(existing, incoming){
+  if(!existing) return incoming;
+  const out = Object.assign({}, incoming);
+  DAY_KEYS.forEach(k => {
+    if(out[k] == null && existing[k] != null) out[k] = existing[k];
+  });
+  return out;
+}
+/* __store_numbers_pure_end__ */
 
 /* Tabs */
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
@@ -282,7 +299,7 @@ document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
   if(t.dataset.tab==='real') calcReal();
 });
 
-$('t_date').valueAsDate = new Date();
+$('t_date').value = localISODate(new Date());
 
 /* TODAY */
 function tile(label,val,sub,cls){return '<div class="stat"><div class="l">'+label+'</div><div class="v">'+val+'</div><div class="s '+(cls||'')+'">'+(sub||'')+'</div></div>';}
@@ -294,10 +311,15 @@ function arrow(cur,prev,goodUp){
   return {s:sym+' '+Math.abs(pct).toFixed(0)+'% vs last day', c: d===0?'':(good?'up':'down')};
 }
 $('t_save').onclick=()=>{
-  const e={date:$('t_date').value,sales:num('t_sales'),guests:num('t_guests'),drink:num('t_drink'),
+  const incoming={date:$('t_date').value,sales:num('t_sales'),guests:num('t_guests'),drink:num('t_drink'),
     fc:num('t_fc'),hours:num('t_hours'),open:num('t_open'),wage:num('t_wage')};
-  if(!e.date){alert('Pick a date');return;}
-  const others = loadAll().filter(x=>x.date!==e.date);
+  if(!incoming.date){alert('Pick a date');return;}
+  const all = loadAll();
+  const existing = all.find(x=>x && x.date===incoming.date) || null;
+  const e = mergeDay(existing, incoming);
+  // A blank input means "not entered this time", not "erase the stored number".
+  if(!existing && DAY_KEYS.every(k=>e[k]==null)){alert('Enter at least one number');return;}
+  const others = all.filter(x=>x.date!==e.date);
   const prev = others.slice().sort((a,b)=>a.date<b.date?1:-1)[0]||null;
   const data = others.concat([e]).sort((a,b)=>a.date<b.date?-1:1);
   saveAll(data);
@@ -429,7 +451,7 @@ $('p_copy').onclick=()=>{navigator.clipboard.writeText($('p_out').textContent).t
 const SKEY='shift_log_v1';
 const loadShifts=()=>{ try{return JSON.parse(localStorage.getItem(SKEY)||'[]');}catch(e){return [];} };
 const saveShifts=d=>localStorage.setItem(SKEY,JSON.stringify(d));
-$('s_date').valueAsDate=new Date();
+$('s_date').value=localISODate(new Date());
 function shiftResult(e){
   if(e.open==null||e.sales==null||e.close==null) return null;
   const exp=e.open+(e.sales||0)-(e.drops||0);
@@ -473,7 +495,7 @@ $('s_export').onclick=()=>{
   const data=loadShifts(); if(!data.length){alert('Nothing to export');return;}
   const esc=v=>{v=(v==null?'':String(v)); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
   const head='saved_timestamp,date,name,start,end,opening,closing,sales_rung,drops,took_from,handed_to,counted_self,witness,notes\n';
-  const body=data.map(e=>[e.savedLocal,e.date,e.name,e.start,e.end,e.open,e.close,e.sales,e.drops,e.from,e.to,e.counted?'yes':'no',e.witness,e.notes].map(esc).join(',')).join('\n');
+  const body=data.map(e=>[e.saved,e.date,e.name,e.start,e.end,e.open,e.close,e.sales,e.drops,e.from,e.to,e.counted?'yes':'no',e.witness,e.notes].map(esc).join(',')).join('\n');
   const blob=new Blob([head+body],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='shift-log.csv'; a.click();
 };
 
