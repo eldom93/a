@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Store Numbers — Daily Tracker &amp; Money Finder</title>
+<style>
+  :root{
+    --bg:#0f1216; --panel:#171b22; --panel2:#1e242d; --line:rgba(255,255,255,.08);
+    --text:#eef2f7; --muted:#9aa6b6; --green:#2ecc71; --red:#ff5c5c; --amber:#ffb020;
+    --accent:#2fc4a8; --blue:#4aa3ff; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
+  header{padding:18px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(15,18,22,.95);backdrop-filter:blur(8px);z-index:10}
+  header h1{margin:0;font-size:1.15rem;letter-spacing:-.01em}
+  header p{margin:2px 0 0;color:var(--muted);font-size:.85rem}
+  .wrap{max-width:860px;margin:0 auto;padding:16px}
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+  .tab{flex:1;min-width:110px;padding:11px 10px;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:12px;cursor:pointer;font-weight:600;font-size:.9rem;text-align:center}
+  .tab.active{color:#fff;background:linear-gradient(120deg,var(--accent),var(--blue));border-color:transparent}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:14px}
+  .card h2{margin:0 0 4px;font-size:1.05rem}
+  .card h3{font-size:.98rem}
+  .card .hint{color:var(--muted);font-size:.85rem;margin:0 0 14px}
+  label{display:block;font-size:.8rem;color:var(--muted);margin:10px 0 4px;font-weight:600}
+  input,select{width:100%;padding:11px 12px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;color:var(--text);font-size:1rem}
+  input:focus,select:focus{outline:none;border-color:var(--accent)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  @media(max-width:560px){.grid3{grid-template-columns:1fr 1fr}}
+  button.go{margin-top:16px;width:100%;padding:13px;border:none;border-radius:12px;background:linear-gradient(120deg,var(--accent),var(--blue));color:#fff;font-weight:700;font-size:1rem;cursor:pointer}
+  button.ghost{background:var(--panel2);border:1px solid var(--line);color:var(--text)}
+  .kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+  @media(min-width:560px){.kpi{grid-template-columns:1fr 1fr 1fr}}
+  .stat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px}
+  .stat .l{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+  .stat .v{font-size:1.45rem;font-weight:800;margin-top:2px}
+  .stat .s{font-size:.78rem;margin-top:2px;min-height:1em}
+  .up{color:var(--green)} .down{color:var(--red)} .warn{color:var(--amber)}
+  .flag{display:flex;gap:10px;align-items:flex-start;padding:12px;border-radius:12px;margin-top:10px;font-size:.9rem}
+  .flag .ic{font-size:1.1rem;line-height:1.2}
+  .flag.bad{background:rgba(255,92,92,.1);border:1px solid rgba(255,92,92,.35)}
+  .flag.warnb{background:rgba(255,176,32,.1);border:1px solid rgba(255,176,32,.35)}
+  .flag.good{background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.35)}
+  table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:8px}
+  th,td{padding:8px 6px;text-align:right;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--muted);font-weight:600}
+  .big{font-size:1.8rem;font-weight:800;margin:6px 0}
+  .money{color:var(--green)}
+  .range{display:flex;align-items:center;gap:10px}
+  .range input[type=range]{flex:1}
+  .pill{display:inline-block;padding:3px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:var(--panel2);border:1px solid var(--line);color:var(--text);min-width:64px;text-align:center}
+  pre.pitch{white-space:pre-wrap;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:.88rem;line-height:1.55;font-family:inherit}
+  .muted{color:var(--muted)} .sm{font-size:.82rem}
+  .row-actions{display:flex;gap:8px;margin-top:10px}
+  .hide{display:none}
+  hr{border:none;border-top:1px solid var(--line);margin:18px 0}
+</style>
+</head>
+<body>
+<header>
+  <h1>Store Numbers — Daily Tracker &amp; Money Finder</h1>
+  <p>Log your day, catch bad data, and see what improvements are worth. Saves on this device only.</p>
+</header>
+<div class="wrap">
+  <div class="tabs">
+    <div class="tab active" data-tab="today">Today</div>
+    <div class="tab" data-tab="cash">Cash Count</div>
+    <div class="tab" data-tab="history">History</div>
+    <div class="tab" data-tab="money">Money Finder</div>
+    <div class="tab" data-tab="pitch">My Pitch</div>
+  </div>
+
+  <!-- TODAY -->
+  <section id="today">
+    <div class="card">
+      <h2>Enter today's numbers</h2>
+      <p class="hint">Pull these off your end-of-day report / dashboard. Leave blank what you don't have.</p>
+      <div class="grid2">
+        <div><label>Date</label><input type="date" id="t_date"></div>
+        <div><label>Net sales ($)</label><input type="number" step="0.01" id="t_sales" placeholder="773.87"></div>
+      </div>
+      <div class="grid3">
+        <div><label>Guest count</label><input type="number" id="t_guests" placeholder="58"></div>
+        <div><label>Drink sales ($)</label><input type="number" step="0.01" id="t_drink" placeholder="97.10"></div>
+        <div><label>Food cost %</label><input type="number" step="0.1" id="t_fc" placeholder="31"></div>
+      </div>
+      <div class="grid3">
+        <div><label>Labor hours worked</label><input type="number" step="0.1" id="t_hours" placeholder="21"></div>
+        <div><label>Hours open</label><input type="number" step="0.1" id="t_open" placeholder="13"></div>
+        <div><label>Avg wage ($/hr)</label><input type="number" step="0.25" id="t_wage" placeholder="13.00"></div>
+      </div>
+      <button class="go" id="t_save">Save day &amp; show my numbers</button>
+    </div>
+
+    <div class="card">
+      <h2>Your numbers today</h2>
+      <p class="hint">Plain-English read is below the tiles. Arrows compare to your last saved day.</p>
+      <div class="kpi" id="t_kpi"><p class="muted sm">Save a day to see your numbers.</p></div>
+      <div id="t_flags"></div>
+    </div>
+  </section>
+
+  <!-- CASH -->
+  <section id="cash" class="hide">
+    <div class="card">
+      <h2>Cash drawer reconciliation</h2>
+      <p class="hint">Find your over/short. Over = extra cash; Short = money missing.</p>
+      <div class="grid2">
+        <div><label>Opening cash ($)</label><input type="number" step="0.01" id="c_open" placeholder="400.00"></div>
+        <div><label>Required cash from sales ($)</label><input type="number" step="0.01" id="c_req" placeholder="495.12"></div>
+      </div>
+      <div class="grid2">
+        <div><label>Total cash drops ($)</label><input type="number" step="0.01" id="c_drop" placeholder="104.88"></div>
+        <div><label>Paid outs ($)</label><input type="number" step="0.01" id="c_paid" placeholder="0.00"></div>
+      </div>
+      <div><label>Actual cash counted ($)</label><input type="number" step="0.01" id="c_actual" placeholder="504.88"></div>
+      <button class="go" id="c_calc">Calculate over / short</button>
+      <div class="kpi" id="c_kpi" style="margin-top:14px"></div>
+      <div id="c_flags"></div>
+    </div>
+  </section>
+
+  <!-- HISTORY -->
+  <section id="history" class="hide">
+    <div class="card">
+      <h2>History &amp; trends</h2>
+      <p class="hint">Every saved day. Bad data (impossible food cost, big drops) is flagged so it stands out.</p>
+      <div id="h_table"></div>
+      <div class="row-actions">
+        <button class="go ghost" id="h_export">Export CSV</button>
+        <button class="go ghost" id="h_clear">Clear all data</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MONEY FINDER -->
+  <section id="money" class="hide">
+    <div class="card">
+      <h2>Money Finder</h2>
+      <p class="hint">The three biggest money levers in a sandwich shop. Drag the sliders to see the yearly impact using your store's real numbers.</p>
+
+      <label>Guests per day</label>
+      <input type="number" id="m_guests" value="58">
+      <label>Average ticket ($)</label>
+      <input type="number" step="0.01" id="m_ticket" value="13.34">
+      <label>Days open per week</label>
+      <input type="number" id="m_days" value="7">
+
+      <hr>
+      <h3 style="margin:0 0 2px">1. Raise the average ticket (upsell)</h3>
+      <p class="sm muted" style="margin:0 0 8px">Cookies, chips, drinks, meal upgrades — adds to every order.</p>
+      <div class="range"><input type="range" id="m_lift" min="0" max="3" step="0.25" value="1"><span class="pill" id="m_lift_v">+$1.00</span></div>
+      <div class="big money" id="m_lift_out">$0 / yr</div>
+
+      <h3 style="margin:14px 0 2px">2. Lift drink attachment</h3>
+      <p class="sm muted" style="margin:0 0 8px">Drinks are the highest-margin item (~75% profit). Extra % of guests who add one.</p>
+      <div class="range"><input type="range" id="m_drink" min="0" max="20" step="1" value="5"><span class="pill" id="m_drink_v">+5%</span></div>
+      <div class="big money" id="m_drink_out">$0 / yr</div>
+
+      <h3 style="margin:14px 0 2px">3. Tighten labor to match sales</h3>
+      <p class="sm muted" style="margin:0 0 8px">Cut slow-time overstaffing. Each unneeded hour removed saves wage + payroll tax.</p>
+      <div class="range"><input type="range" id="m_lab" min="0" max="6" step="0.5" value="2"><span class="pill" id="m_lab_v">2 hr/day</span></div>
+      <label>Avg wage for this ($/hr)</label><input type="number" step="0.25" id="m_wage" value="13.00">
+      <div class="big money" id="m_lab_out">$0 / yr</div>
+
+      <div class="flag good" style="margin-top:16px">
+        <span class="ic">★</span>
+        <div><strong>Total yearly value you could drive:</strong> <span id="m_total" class="money">$0</span><br>
+        <span class="sm muted">This is the value you create for the owner — exactly the leverage you use to ask for a raise or bonus.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PITCH -->
+  <section id="pitch" class="hide">
+    <div class="card">
+      <h2>Build my pay pitch</h2>
+      <p class="hint">Fill this in and get a script to read to the owner. Honest, numbers-first, hard to say no to. Uses your Money Finder total.</p>
+      <div class="grid2">
+        <div><label>Your name</label><input id="p_name" placeholder="Alex"></div>
+        <div><label>Your role</label><input id="p_role" placeholder="Shift lead / Manager"></div>
+      </div>
+      <div class="grid2">
+        <div><label>Current pay ($/hr)</label><input type="number" step="0.25" id="p_now" placeholder="13.00"></div>
+        <div><label>Pay you want ($/hr)</label><input type="number" step="0.25" id="p_want" placeholder="16.00"></div>
+      </div>
+      <label>One concrete win you already delivered</label>
+      <input id="p_win" placeholder="e.g. kept the drawer accurate, trained 2 new hires, cut waste">
+      <button class="go" id="p_build">Write my pitch</button>
+      <pre class="pitch hide" id="p_out"></pre>
+      <button class="go ghost hide" id="p_copy">Copy to clipboard</button>
+    </div>
+  </section>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const money = n => (n<0?'-$':'$') + Math.abs(n).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+const money0 = n => (n<0?'-$':'$') + Math.round(Math.abs(n)).toLocaleString();
+const num = id => { const v = parseFloat($(id).value); return isNaN(v)?null:v; };
+const KEY = 'store_numbers_v1';
+const loadAll = () => { try{return JSON.parse(localStorage.getItem(KEY)||'[]');}catch(e){return [];} };
+const saveAll = d => localStorage.setItem(KEY, JSON.stringify(d));
+
+/* Tabs */
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  ['today','cash','history','money','pitch'].forEach(s=>$(s).classList.add('hide'));
+  $(t.dataset.tab).classList.remove('hide');
+  if(t.dataset.tab==='history') renderHistory();
+});
+
+$('t_date').valueAsDate = new Date();
+
+/* TODAY */
+function tile(label,val,sub,cls){return '<div class="stat"><div class="l">'+label+'</div><div class="v">'+val+'</div><div class="s '+(cls||'')+'">'+(sub||'')+'</div></div>';}
+function arrow(cur,prev,goodUp){
+  if(cur==null||prev==null||isNaN(prev)||isNaN(cur))return{s:'',c:''};
+  const d=cur-prev, pct=prev?(d/prev*100):0;
+  const good = goodUp ? d>=0 : d<=0;
+  const sym = d>0?'▲':(d<0?'▼':'—');
+  return {s:sym+' '+Math.abs(pct).toFixed(0)+'% vs last day', c: d===0?'':(good?'up':'down')};
+}
+$('t_save').onclick=()=>{
+  const e={date:$('t_date').value,sales:num('t_sales'),guests:num('t_guests'),drink:num('t_drink'),
+    fc:num('t_fc'),hours:num('t_hours'),open:num('t_open'),wage:num('t_wage')};
+  if(!e.date){alert('Pick a date');return;}
+  const others = loadAll().filter(x=>x.date!==e.date);
+  const prev = others.slice().sort((a,b)=>a.date<b.date?1:-1)[0]||null;
+  const data = others.concat([e]).sort((a,b)=>a.date<b.date?-1:1);
+  saveAll(data);
+  showToday(e,prev);
+};
+function showToday(e,prev){
+  const k=$('t_kpi'); const f=$('t_flags'); f.innerHTML='';
+  const avg = (e.sales&&e.guests)? e.sales/e.guests : null;
+  const prod = (e.guests&&e.hours)? e.guests/e.hours : null;
+  const drinkPct = (e.drink&&e.sales)? e.drink/e.sales*100 : null;
+  const laborPct = (e.wage&&e.hours&&e.sales)? (e.wage*e.hours)/e.sales*100 : null;
+  const pAvg = prev&&prev.sales&&prev.guests? prev.sales/prev.guests:null;
+  const pProd = prev&&prev.guests&&prev.hours? prev.guests/prev.hours:null;
+  const aS=arrow(e.sales,prev?prev.sales:null,true);
+  const aA=arrow(avg,pAvg,true);
+  const aP=arrow(prod,pProd,true);
+  k.innerHTML =
+    tile('Net sales', e.sales!=null?money(e.sales):'—', aS.s, aS.c)+
+    tile('Guests', e.guests!=null?e.guests:'—','')+
+    tile('Avg ticket', avg!=null?money(avg):'—', aA.s, aA.c)+
+    tile('Guests / labor hr', prod!=null?prod.toFixed(1):'—', aP.s, aP.c)+
+    tile('Drink %', drinkPct!=null?drinkPct.toFixed(1)+'%':'—','')+
+    tile('Labor % of sales', laborPct!=null?laborPct.toFixed(1)+'%':'—','');
+
+  const add=(cls,ic,txt)=>f.innerHTML+='<div class="flag '+cls+'"><span class="ic">'+ic+'</span><div>'+txt+'</div></div>';
+  if(e.fc!=null){
+    if(e.fc>60||e.fc<=0) add('bad','!','<strong>Food cost '+e.fc+'% is impossible.</strong> Almost always a data error — inventory not entered, deliveries miscounted, or sales not fully posted. Fix the entry before trusting any profit number.');
+    else if(e.fc>33) add('warnb','▲','<strong>Food cost '+e.fc+'% is high.</strong> Target is usually ~28–31%. Check portioning and waste.');
+    else add('good','✓','Food cost '+e.fc+'% is in a healthy range.');
+  }
+  if(prod!=null){
+    if(prod<4) add('warnb','▲','<strong>Productivity '+prod.toFixed(1)+' guests/hour is low.</strong> Likely overstaffed for the sales — the top place to save money.');
+    else add('good','✓','Productivity '+prod.toFixed(1)+' guests/hour looks reasonable.');
+  }
+  if(drinkPct!=null && drinkPct>=10) add('good','✓','Drink attach '+drinkPct.toFixed(1)+'% is strong — drinks are your highest-margin add-on. Keep pushing it.');
+  if(prev&&e.sales&&prev.sales&&e.sales<prev.sales*0.85) add('warnb','▼','Sales dropped '+((1-e.sales/prev.sales)*100).toFixed(0)+'% vs your last day. Note the reason (weather, staffing, day of week).');
+  if(!f.innerHTML) f.innerHTML='<p class="muted sm">Enter a few more fields to get flags and advice.</p>';
+}
+
+/* CASH */
+$('c_calc').onclick=()=>{
+  const open=num('c_open')||0, req=num('c_req')||0, drop=num('c_drop')||0, paid=num('c_paid')||0,
+        actual=num('c_actual');
+  const expected = open + req - drop - paid;
+  const os = actual!=null ? actual - expected : null;
+  const k=$('c_kpi'); const f=$('c_flags'); f.innerHTML='';
+  k.innerHTML =
+    tile('Expected in drawer', money(expected),'')+
+    tile('Actual counted', actual!=null?money(actual):'—','')+
+    tile('Over / Short', os!=null?money(os):'—', os==null?'':(os>=0?'OVER':'SHORT'), os==null?'':(os>=0?'up':'down'));
+  if(os!=null){
+    if(Math.abs(os)<2) f.innerHTML='<div class="flag good"><span class="ic">✓</span><div>Within $2 — basically perfect. Normal change-making rounding.</div></div>';
+    else if(os<0) f.innerHTML='<div class="flag bad"><span class="ic">!</span><div><strong>Short '+money(Math.abs(os))+'.</strong> Recount, then check for a missed drop, a wrong-change event, or an un-rung sale.</div></div>';
+    else f.innerHTML='<div class="flag warnb"><span class="ic">▲</span><div><strong>Over '+money(os)+'.</strong> Usually a change-making error or a drop not recorded. Not missing money, but still an accuracy issue to fix.</div></div>';
+  }
+};
+
+/* HISTORY */
+function renderHistory(){
+  const data=loadAll(); const t=$('h_table');
+  if(!data.length){t.innerHTML='<p class="muted">No saved days yet. Add one on the Today tab.</p>';return;}
+  let rows='<table><tr><th>Date</th><th>Sales</th><th>Guests</th><th>Avg</th><th>Guests/hr</th><th>Food%</th><th>Flag</th></tr>';
+  data.slice().reverse().forEach(e=>{
+    const avg=(e.sales&&e.guests)?e.sales/e.guests:null;
+    const prod=(e.guests&&e.hours)?e.guests/e.hours:null;
+    let flag='ok',cls='up';
+    if(e.fc!=null&&(e.fc>60||e.fc<=0)){flag='bad data';cls='down';}
+    else if(prod!=null&&prod<4){flag='low prod';cls='warn';}
+    rows+='<tr><td>'+e.date+'</td><td>'+(e.sales!=null?money(e.sales):'—')+'</td><td>'+(e.guests!=null?e.guests:'—')+'</td>'+
+      '<td>'+(avg!=null?money(avg):'—')+'</td><td>'+(prod!=null?prod.toFixed(1):'—')+'</td>'+
+      '<td>'+(e.fc!=null?e.fc+'%':'—')+'</td><td class="'+cls+'">'+flag+'</td></tr>';
+  });
+  rows+='</table>'; t.innerHTML=rows;
+}
+$('h_clear').onclick=()=>{if(confirm('Delete all saved days?')){saveAll([]);renderHistory();}};
+$('h_export').onclick=()=>{
+  const data=loadAll(); if(!data.length){alert('Nothing to export');return;}
+  const head='date,sales,guests,drink,food_cost_pct,hours_worked,hours_open,wage\n';
+  const body=data.map(e=>[e.date,e.sales,e.guests,e.drink,e.fc,e.hours,e.open,e.wage].map(v=>v==null?'':v).join(',')).join('\n');
+  const blob=new Blob([head+body],{type:'text/csv'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='store-numbers.csv'; a.click();
+};
+
+/* MONEY FINDER */
+function calcMoney(){
+  const guests=num('m_guests')||0, days=num('m_days')||7, weeksYr=52;
+  const lift=num('m_lift')||0, drinkPts=num('m_drink')||0, labHr=num('m_lab')||0, wage=num('m_wage')||0;
+  const liftYr = lift * guests * days * weeksYr;
+  const drinkPrice=2.19, drinkMargin=0.75;
+  const drinkYr = (drinkPts/100)*guests*drinkPrice * days * weeksYr;
+  const drinkProfit = drinkYr*drinkMargin;
+  const labYr = labHr*wage*1.12*days*weeksYr;
+  $('m_lift_v').textContent='+$'+lift.toFixed(2);
+  $('m_drink_v').textContent='+'+drinkPts+'%';
+  $('m_lab_v').textContent=labHr+' hr/day';
+  $('m_lift_out').textContent=money0(liftYr)+' / yr in added sales';
+  $('m_drink_out').textContent=money0(drinkYr)+' / yr sales ('+money0(drinkProfit)+' profit)';
+  $('m_lab_out').textContent=money0(labYr)+' / yr saved';
+  $('m_total').textContent=money0(liftYr + drinkYr + labYr)+' / yr';
+}
+['m_guests','m_ticket','m_days','m_lift','m_drink','m_lab','m_wage'].forEach(id=>$(id).addEventListener('input',calcMoney));
+calcMoney();
+
+/* PITCH */
+$('p_build').onclick=()=>{
+  const name=$('p_name').value||'[your name]';
+  const role=$('p_role').value||'team member';
+  const now=num('p_now'), want=num('p_want');
+  const win=($('p_win').value||'kept the store running smoothly and the numbers accurate').trim();
+  const total=$('m_total').textContent;
+  const raiseLine = (now&&want)? "I'm currently at $"+now.toFixed(2)+"/hr and I'm asking for $"+want.toFixed(2)+"/hr." :
+                    "I'd like to talk about moving my pay up.";
+  const annualGap = (now&&want)? (want-now)*35*52 : null;
+  const gapLine = annualGap? "That raise costs the store about "+money0(annualGap)+" a year." : "";
+  const txt =
+"Hi [owner/manager], can I grab five minutes about my pay?\n\n"+
+"I take this store's numbers seriously. As "+role+", "+win.charAt(0).toLowerCase()+win.slice(1)+".\n\n"+
+"I've looked at what actually moves profit here, and I've found about "+total+" in realistic upside — by lifting the average ticket, pushing our drink attach (our highest-margin item), and matching labor hours to real sales instead of overstaffing slow periods. I want to own those results.\n\n"+
+raiseLine+" "+gapLine+"\n\n"+
+"So the raise more than pays for itself out of the improvements I'm driving. If it helps, I'm happy to tie part of it to hitting targets — a bonus when food cost stays on target, or when we beat last week's sales. I just want my pay to reflect the value I bring.\n\n"+
+"What would it take to make that happen?";
+  $('p_out').textContent=txt;
+  $('p_out').classList.remove('hide');
+  $('p_copy').classList.remove('hide');
+};
+$('p_copy').onclick=()=>{navigator.clipboard.writeText($('p_out').textContent).then(()=>{$('p_copy').textContent='Copied ✓';setTimeout(()=>$('p_copy').textContent='Copy to clipboard',1500);});};
+</script>
+</body>
+</html>
