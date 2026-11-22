@@ -241,10 +241,10 @@ def build_exhibit(path):
         "pantry, living room, and personal effects shown in Petitioner's photographs, and "
         "any other property of Petitioner in the residence. Petitioner claims the white GE "
         "washer, the white GE dryer, and both bidets. Some photographs are older and show "
-        "16837, where Petitioner lived before marriage and before the move to Frisco. "
-        "Objects in those photographs remain claimed if they are at 4400 Coney Island Drive, "
-        "Frisco, Texas 75036. Retrieval is from the Frisco address. 16837 is not a retrieval "
-        "location. Apartment-installed stove, refrigerator, shower fixtures, tub, toilet bowls, "
+        "16837 Aventura, where Petitioner lived before marriage and before the move to Frisco. "
+        "Petitioner is not renting 16837 Aventura. Every object in those photographs is still "
+        "claimed if it is at 4400 Coney Island Drive, Frisco, Texas 75036. Retrieval is from "
+        "the Frisco address only. Apartment-installed stove, refrigerator, shower fixtures, tub, toilet bowls, "
         "over-range microwave, and apartment door hardware are not claimed.",
     )
     body(
@@ -343,12 +343,12 @@ def build_exhibit(path):
         "with white starburst stitching, two red vases and the white ceramic vase on the "
         "etagere, each dining chair, the sunburst wall mirror, the seafoam glass vase with "
         "yellow peonies, and the brown ribbed vase. "
-        "Some of those photographs are older and show 16837, where Petitioner lived before "
-        "marriage and before the move to Frisco, including a bedroom with the television on "
-        "the folding tray, the teal laundry baskets, the floor-level makeup organizer, the "
-        "dresser, and the dining set. Objects in those photographs remain claimed if they "
-        "are at 4400 Coney Island Drive, Frisco, Texas 75036. Retrieval is from the Frisco "
-        "address. 16837 is not a retrieval location. "
+        "Some of those photographs are older and show 16837 Aventura, where Petitioner lived "
+        "before marriage and before the move to Frisco, including a bedroom with the television "
+        "on the folding tray, the teal laundry baskets, the floor-level makeup organizer, the "
+        "dresser, and the dining set. Petitioner is not renting 16837 Aventura. Every object "
+        "in those photographs is still claimed if it is at 4400 Coney Island Drive, Frisco, "
+        "Texas 75036. Retrieval is from the Frisco address only. "
         "The apartment door lock, tub, shower fixtures, built-in vanity, sink, faucet, towel rings, "
         "blinds, over-range microwave, kitchen island cabinets, stove, ceiling lights, and refrigerator appliance in those photographs are not claimed. "
         "Additional photographs may be added before the hearing.",
