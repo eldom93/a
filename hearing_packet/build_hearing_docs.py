@@ -301,7 +301,8 @@ def build_exhibit(path):
         "Archive 4.zip photographs of the Litter-Robot, Epson EcoTank desk, laundry shelf above "
         "the white GE washer, utensil drawer, blender cabinet, freezer, jeans baskets, "
         "CASUAL SYNTHETIC LONG SLEEVE DRESSES / SYNTHETIC JUMPERS / SKIRTS bags, "
-        "crystal shower-curtain rings, and the X-frame console. "
+        "crystal shower-curtain rings, and the X-frame console, and Archive 5.zip photographs "
+        "of the Omron monitor, cuff, blue sticky note, and foil packet on the carpet by the easel. "
         "The apartment door lock, tub, and shower fixtures in those photographs are not claimed. "
         "Additional photographs may be added before the hearing.",
     )
