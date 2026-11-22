@@ -302,7 +302,10 @@ def build_exhibit(path):
         "the white GE washer, utensil drawer, blender cabinet, freezer, jeans baskets, "
         "CASUAL SYNTHETIC LONG SLEEVE DRESSES / SYNTHETIC JUMPERS / SKIRTS bags, "
         "crystal shower-curtain rings, and the X-frame console, and Archive 5.zip photographs "
-        "of the Omron monitor, cuff, blue sticky note, and foil packet on the carpet by the easel. "
+        "of the Omron monitor, cuff, blue sticky note, and foil packet on the carpet by the easel, "
+        "and Archive 7.zip (Archive 6 folder) photographs of the same pantry, laundry shelf, "
+        "desk, freezer, utensil drawer, blender cabinet, jeans baskets, labeled bags, "
+        "shower curtain, and living room already listed above. "
         "The apartment door lock, tub, and shower fixtures in those photographs are not claimed. "
         "Additional photographs may be added before the hearing.",
     )
