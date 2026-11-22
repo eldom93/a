@@ -240,10 +240,11 @@ def build_exhibit(path):
         "Other rooms: dresser, mirror, clothing, bags, bathroom products, hair tools, kitchen, "
         "pantry, living room, and personal effects shown in Petitioner's photographs, and "
         "any other property of Petitioner in the residence. Petitioner claims the white GE "
-        "washer, the white GE dryer, and both bidets. Some photographs are older and show a "
-        "prior residence. Property in those photographs is still claimed if it is at 4400 "
-        "Coney Island Drive, Frisco, Texas 75036. Retrieval is from that address only. "
-        "Apartment-installed stove, refrigerator, shower fixtures, tub, toilet bowls, "
+        "washer, the white GE dryer, and both bidets. Some photographs are older and show "
+        "16837, where Petitioner lived before marriage and before the move to Frisco. "
+        "Objects in those photographs remain claimed if they are at 4400 Coney Island Drive, "
+        "Frisco, Texas 75036. Retrieval is from the Frisco address. 16837 is not a retrieval "
+        "location. Apartment-installed stove, refrigerator, shower fixtures, tub, toilet bowls, "
         "over-range microwave, and apartment door hardware are not claimed.",
     )
     body(
@@ -261,7 +262,7 @@ def build_exhibit(path):
     heading(pdf, "Category awards requested")
     cats = [
         "A. All of Petitioner's clothing, shoes, jewelry, and personal effects at Respondent's residence, whether or not separately photographed, including the pair of dark-brown leather tall riding boots, each shoe on the rolling shoe rack, the pink-and-white garment steamer, and every labeled bag and box in the closet photographs.",
-        "B. All furniture and household goods belonging to Petitioner at Respondent's residence, including the dresser, both beds and white bedding, matching cutout nightstands and twisted lamps, teal tufted bench at the foot of the upholstered-headboard bed, desks, office chair, dining table and chairs, bar stools, tufted benches, area rugs, sofas and throw pillows, marble-look coffee table, glass coffee table, poufs, full-length wood-framed floor mirror, black-framed wall mirror, carved-wood cabinet, nested console tables, black metal X-frame glass console, folding tray table, whiteboard and rolling easel, metal etagere and the candles, vase, plant, books, and gold pyramid on it, mirrored side tables, laundry sorter, rolling shoe rack, media console, humidifier, floating shelves, green shelves, brackets and screws, three rectangular green marble slabs, television mount, robot vacuum, white GE washer, white GE dryer, both bidets, and any other furniture, furnishings, or household items that are Petitioner's.",
+        "B. All furniture and household goods belonging to Petitioner at Respondent's residence, including the dresser, both beds and white bedding, matching cutout nightstands and twisted lamps, teal tufted bench at the foot of the upholstered-headboard bed, desks, office chair, dining table and each dining chair, sunburst wall mirror, bar stools, tufted benches, area rugs, sofas and throw pillows, marble-look coffee table, glass coffee table, two brown leather poufs with white starburst stitching, full-length wood-framed floor mirror, black-framed wall mirror, carved-wood cabinet, nested console tables, black metal X-frame glass console, folding tray table, whiteboard and rolling easel, metal etagere and the candles, both red vases, plant, books, white ceramic vase, and gold pyramid on it, mirrored side tables, laundry sorter, rolling shoe rack, media console, humidifier, floating shelves, green shelves, brackets and screws, three rectangular green marble slabs, seafoam glass vase, brown ribbed vase, snake plant, television mount, robot vacuum, white GE washer, white GE dryer, both bidets, and any other furniture, furnishings, or household items that are Petitioner's.",
         "C. Every personal-care bottle, tube, jar, compact, brush, hair tool, hair product, facial device, and medication belonging to Petitioner, including the Dyson Supersonic Vinca Blue and Rose dryer in its box, the FOREO UFO 2 and FOREO facial devices, the Omron blood-pressure monitor, the Anastasia Beverly Hills palette, the Bobbi Brown Night Drama palette, the false-eyelash tray, and each object listed above. This category is not a single grouped label.",
         "D. Kitchenware belonging to Petitioner: Le Creuset blue enameled Dutch oven, KitchenAid stand mixer, espresso/coffee machine, toaster oven, knife block and the knives in it, SodaStream, air fryer, hand mixer, silverware, cooking utensils, blender, All-Clad pans, bakeware, food storage, dishes, glassware, kettles, packed-pantry food named product-by-product (Bobo's Chocolate Chip Oat Bites, Progresso Bread Crumbs, Sahale, Wonderful pistachios, Farmhouse Hearty White, HEB Ginger Ale, Perrier, Harvest Snaps, Dixie cups, Hunt's, Thai Kitchen, Barnana, KIND, bubly, La Croix, Ozarka, Dasani, Bounty 30 Triples, and the rest), 2022 pantry non-perishable food named product-by-product (Clorox Disinfecting Wipes 142, Green Life paper towels, Gold tortillas, extra Hunt's, Jolly, extra Dasani, and the rest), wrap-drawer goods (Reynolds Wrap Heavy Duty, Reynolds plastic wrap, Glad Cling Wrap, Hefty bags, COVID-19 at-home tests), under-sink goods (Glad ForceFlex 120, Cascade Complete, Windex, Dawn), banana hanger, Vita Coco Cooking, baking flour, 2022 laundry products, baskets and bins, Indian Coffee House / Match / Equator / Peace coffee, and small appliances. Built-in or apartment-installed stove, refrigerator, shower fixtures, tub, toilet bowls, garbage disposal, faucet, dishwasher, and apartment door hardware are not claimed.",
         "E. Petitioner's cat and all pet-related property, including the Litter-Robot gray automatic litter box, orange covered litter box, orange hard-sided pet carrier, Arm and Hammer Slide litter box, chrome cat tree or shelf frame, sisal scratching posts, KONG figure-8 toy, black automatic pet feeder, pet water fountain with green daisy lid, bowls, UV cat-urine light, Arm and Hammer pet stain and odor eliminator, veterinary records, microchip registration, medications, food, litter, carriers, and supplies.",
@@ -336,12 +337,18 @@ def build_exhibit(path):
         "the kitchen orange-flower vases, knife block, checkered oven towel, Blu-ray player "
         "on the media console, matching left cutout nightstand and lamp, teal tufted bench "
         "and the pillows on it, and the glass coffee table (Bubba bottle, Sharpies, plate, fork), "
-        "and the photograph of three rectangular green marble slabs on the living-room rug. "
-        "Some of those photographs are older, including a prior-residence bedroom with the "
-        "television on the folding tray, the teal laundry baskets, the floor-level makeup "
-        "organizer, and the dresser. Objects in the older photographs remain claimed if they "
-        "are at 4400 Coney Island Drive, Frisco, Texas 75036. Retrieval is from that address "
-        "only, not from a prior apartment. "
+        "and the photograph of three rectangular green marble slabs on the living-room rug, "
+        "and the further photographs of four orange-flower vases, the snake plant and fruit "
+        "bowl on the island, two black faceted vases and palm stems, two brown leather poufs "
+        "with white starburst stitching, two red vases and the white ceramic vase on the "
+        "etagere, each dining chair, the sunburst wall mirror, the seafoam glass vase with "
+        "yellow peonies, and the brown ribbed vase. "
+        "Some of those photographs are older and show 16837, where Petitioner lived before "
+        "marriage and before the move to Frisco, including a bedroom with the television on "
+        "the folding tray, the teal laundry baskets, the floor-level makeup organizer, the "
+        "dresser, and the dining set. Objects in those photographs remain claimed if they "
+        "are at 4400 Coney Island Drive, Frisco, Texas 75036. Retrieval is from the Frisco "
+        "address. 16837 is not a retrieval location. "
         "The apartment door lock, tub, shower fixtures, built-in vanity, sink, faucet, towel rings, "
         "blinds, over-range microwave, kitchen island cabinets, stove, ceiling lights, and refrigerator appliance in those photographs are not claimed. "
         "Additional photographs may be added before the hearing.",
