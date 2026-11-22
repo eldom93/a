@@ -225,9 +225,10 @@ def build_exhibit(path):
     )
     body(
         pdf,
-        "Other rooms: dresser, mirror, clothing, bags, toiletries, hair tools, and personal "
-        "effects shown in Petitioner's photographs, and any other property of Petitioner in "
-        "the residence.",
+        "Other rooms: dresser, mirror, clothing, bags, toiletries, hair tools, kitchen, "
+        "pantry, living room, and personal effects shown in Petitioner's photographs, and "
+        "any other property of Petitioner in the residence. Apartment-installed washer, "
+        "dryer, stove, refrigerator, and shower fixtures are not claimed.",
     )
     heading(pdf, "Specific items shown in earlier photographs (A-1 and following)")
     items = [
@@ -335,15 +336,49 @@ def build_exhibit(path):
         pdf.set_font("Times", "", 11)
         pdf.multi_cell(0, 5.5, line)
         pdf.ln(0.4)
+    heading(pdf, "Untitled folder 7 (110 photographs)")
+    body(
+        pdf,
+        "This folder includes re-shots of labeled bags and Home Depot boxes already listed "
+        "above, plus the additional rooms and appliances below. Petitioner asks for every "
+        "item in the folder that belongs to her.",
+    )
+    for line in [
+        "56. Extra closet rod and rolling shoe rack packed with Petitioner's hanging clothes, heels, boots, sandals, and sneakers.",
+        "57. Red KitchenAid stand mixer.",
+        "58. Black espresso/coffee machine with grinder, Black+Decker toaster oven, knife block, digital scale, oven mitts, and related counter tools.",
+        "59. White SodaStream, black air fryer on the counter, and spice rack.",
+        "60. Red handheld electric mixer, beaters, and related drawer gadgets.",
+        "61. Bamboo silverware tray with forks, spoons, knives, and steak knives.",
+        "62. Glass nested console tables with a gray vase.",
+        "63. Folding TV-tray table, whiteboard, black printer, and white fluffy rug.",
+        "64. Three-bag wood-and-metal laundry sorter with black bags.",
+        "65. Photographed pantry cabinets and refrigerator contents (food, condiments, flour, oil, water jug, snacks, and staples that are Petitioner's). The refrigerator appliance itself is not claimed.",
+        "66. Cleaning caddies, laundry products, mops, and spray mop (on and near the laundry machines and in the pantry closet; the washer and dryer themselves are not claimed).",
+        "67. Dyson-style hair dryer and styler with cases, plus additional hair tools on the floor by the dresser and by the entry mirror.",
+        "68. Makeup and toiletry baskets, black cases, Sexy Hair and other hair products, and an IKEA bag of personal items.",
+        "69. Glass canisters, Ziploc and kitchen-drawer sundries, measuring spoons, blender, tumblers, pitcher, glasses, mugs, and other kitchen items photographed in drawers and cabinets.",
+        "70. Hallway and entry bags, shoes, wicker baskets, chargers, and packed belongings on the floor.",
+        "71. Dark media console, table lamp, and television shown with the wood-framed floor mirror.",
+        "72. Laptop, monitor, keyboard, stapler, papers, printer, and external hard drive on and around the white desk.",
+        "73. Chrome metal cat tree or shelf frame, bag of cat litter, and boxed litter-box supplies. Awarded with the cat.",
+        "74. Open carton with metal tray, candles, Ziploc, and small household sundries.",
+        "75. Closet cubbies of packed clothing, shoes, and folded items, plus floor piles of Petitioner's clothes.",
+        "76. All other items belonging to Petitioner in untitled folder 7, whether or not separately numbered.",
+    ]:
+        pdf.set_x(pdf.l_margin)
+        pdf.set_font("Times", "", 11)
+        pdf.multi_cell(0, 5.5, line)
+        pdf.ln(0.4)
     heading(pdf, "Category awards requested")
     cats = [
         "A. All of Petitioner's clothing, shoes, jewelry, and personal effects at Respondent's residence, whether or not separately photographed, including every labeled bag and box in the closet photographs.",
-        "B. All furniture and household goods belonging to Petitioner at Respondent's residence, including the dresser, bed and white bedding, nightstand, lamp, desk, tufted bench, area rug, sofa, coffee table, pouf, full-length wood-framed floor mirror, carved-wood cabinet, green shelves and brackets, television mount, robot vacuum, and any other furniture, furnishings, or household items that are Petitioner's.",
-        "C. Toiletries, cosmetics, hair tools and products, and medications belonging to Petitioner.",
-        "D. Kitchenware belonging to Petitioner: Dutch oven, air fryer, pans, bakeware, Tupperware and food storage, dishes, glassware, kettles, and small appliances.",
-        "E. Petitioner's cat and all pet-related property, including the automatic litter box, toys, bowls, veterinary records, microchip registration, medications, food, litter, carriers, and supplies.",
+        "B. All furniture and household goods belonging to Petitioner at Respondent's residence, including the dresser, bed and white bedding, nightstand, lamp, desk, tufted bench, area rug, sofa, coffee table, pouf, full-length wood-framed floor mirror, carved-wood cabinet, nested console tables, folding tray table, whiteboard, laundry sorter, rolling shoe rack, media console, green shelves and brackets, television mount, robot vacuum, and any other furniture, furnishings, or household items that are Petitioner's.",
+        "C. Toiletries, cosmetics, hair tools and products (including the Dyson-style dryer and styler), and medications belonging to Petitioner.",
+        "D. Kitchenware belonging to Petitioner: Dutch oven, KitchenAid stand mixer, espresso/coffee machine, toaster oven, SodaStream, air fryer, hand mixer, silverware, blender, pans, bakeware, Tupperware and food storage, dishes, glassware, kettles, pantry food that is Petitioner's, and small appliances. Built-in or apartment-installed kitchen and laundry appliances are not claimed.",
+        "E. Petitioner's cat and all pet-related property, including the automatic litter box, chrome cat tree or shelf frame, toys, bowls, veterinary records, microchip registration, medications, food, litter, carriers, and supplies.",
         "F. Petitioner's records and identity documents, including legal, identification, immigration, medical, financial, tax, insurance, employment, family, and sentimental records, and books packed in the Living Room box.",
-        "G. Phones, computers, tablets, chargers, drives, and digital accounts and contents belonging to Petitioner.",
+        "G. Phones, computers, tablets, laptop, monitor, printer, keyboard, chargers, drives, and digital accounts and contents belonging to Petitioner.",
         "H. All other personal property belonging to Petitioner at Respondent's residence or in Respondent's possession.",
     ]
     for line in cats:
@@ -364,10 +399,10 @@ def build_exhibit(path):
         pdf,
         "Exhibit A-1 and following are the earlier photographs of the dresser, mirror, hair "
         "dryer, phone, blood-pressure cuff, clothing, bags, and toiletries. Exhibit A-10 "
-        "and following are Petitioner's photographs IMG_0442 through IMG_0534 (92 images) "
-        "and the further photographs sent November 22, 2026 of the bedroom, closet, kitchen, "
-        "cat property, tools, and living room. Additional photographs may be added before "
-        "the hearing.",
+        "and following are Petitioner's photographs IMG_0442 through IMG_0534 (92 images), "
+        "the further photographs sent November 22, 2026 of the bedroom, closet, kitchen, "
+        "cat property, tools, and living room, and untitled folder 7 (110 photographs). "
+        "Additional photographs may be added before the hearing.",
     )
     pdf.ln(8)
     pdf.set_font("Times", "", 11)
