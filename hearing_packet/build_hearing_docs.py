@@ -257,7 +257,7 @@ def build_exhibit(path):
     heading(pdf, "Category awards requested")
     cats = [
         "A. All of Petitioner's clothing, shoes, jewelry, and personal effects at Respondent's residence, whether or not separately photographed, including every labeled bag and box in the closet photographs.",
-        "B. All furniture and household goods belonging to Petitioner at Respondent's residence, including the dresser, bed and white bedding, pair of nightstands, lamp, desks, tufted bench, area rugs, sofas, marble-look coffee table, glass coffee table, poufs, full-length wood-framed floor mirror, carved-wood cabinet, nested console tables, folding tray table, whiteboard and rolling easel, metal etagere, mirrored side tables, laundry sorter, rolling shoe rack, media console, green shelves and brackets, television mount, robot vacuum, and any other furniture, furnishings, or household items that are Petitioner's.",
+        "B. All furniture and household goods belonging to Petitioner at Respondent's residence, including the dresser, bed and white bedding, pair of nightstands, lamp, desks, office chair, dining table and chairs, tufted bench, area rugs, sofas, marble-look coffee table, glass coffee table, poufs, full-length wood-framed floor mirror, black-framed wall mirror, carved-wood cabinet, nested console tables, folding tray table, whiteboard and rolling easel, metal etagere, mirrored side tables, laundry sorter, rolling shoe rack, media console, green shelves and brackets, television mount, robot vacuum, and any other furniture, furnishings, or household items that are Petitioner's.",
         "C. Every personal-care bottle, tube, jar, compact, brush, hair tool, hair product, facial device, and medication belonging to Petitioner, including each object listed above. This category is not a single grouped label.",
         "D. Kitchenware belonging to Petitioner: Dutch oven, KitchenAid stand mixer, espresso/coffee machine, toaster oven, SodaStream, air fryer, hand mixer, silverware, cooking utensils, blender, pans, bakeware, food storage, dishes, glassware, kettles, pantry food that is Petitioner's, and small appliances. Built-in or apartment-installed kitchen and laundry appliances are not claimed.",
         "E. Petitioner's cat and all pet-related property, including the automatic litter box, orange covered litter box, chrome cat tree or shelf frame, toys, bowls, veterinary records, microchip registration, medications, food, litter, carriers, and supplies.",
@@ -286,8 +286,9 @@ def build_exhibit(path):
         "dryer, phone, blood-pressure cuff, clothing, bags, and bathroom products. Exhibit A-10 "
         "and following are Petitioner's photographs IMG_0442 through IMG_0534 (92 images), "
         "the further photographs sent November 22, 2026 of the bedroom, closet, kitchen, "
-        "cat property, tools, and living room, untitled folder 7 (110 photographs), and "
-        "New Folder With Items (121 photographs). Additional photographs may be added "
+        "cat property, tools, and living room, untitled folder 7 (110 photographs), "
+        "New Folder With Items (121 photographs), and Archive.zip (98 unique photographs "
+        "of the packed home, dated September 16, 2026). Additional photographs may be added "
         "before the hearing.",
     )
     pdf.ln(8)
