@@ -267,7 +267,7 @@ def build_exhibit(path):
         "D. Kitchenware belonging to Petitioner: Le Creuset blue enameled Dutch oven, KitchenAid stand mixer, espresso/coffee machine, toaster oven, knife block and the knives in it, SodaStream, air fryer, hand mixer, silverware, cooking utensils, blender, All-Clad pans, bakeware, food storage, dishes, glassware, kettles, packed-pantry food named product-by-product (Bobo's Chocolate Chip Oat Bites, Progresso Bread Crumbs, Sahale, Wonderful pistachios, Farmhouse Hearty White, HEB Ginger Ale, Perrier, Harvest Snaps, Dixie cups, Hunt's, Thai Kitchen, Barnana, KIND, bubly, La Croix, Ozarka, Dasani, Bounty 30 Triples, and the rest), 2022 pantry non-perishable food named product-by-product (Clorox Disinfecting Wipes 142, Green Life paper towels, Gold tortillas, extra Hunt's, Jolly, extra Dasani, and the rest), wrap-drawer goods (Reynolds Wrap Heavy Duty, Reynolds plastic wrap, Glad Cling Wrap, Hefty bags, COVID-19 at-home tests), under-sink goods (Glad ForceFlex 120, Cascade Complete, Windex, Dawn), banana hanger, Vita Coco Cooking, baking flour, 2022 laundry products, baskets and bins, Indian Coffee House / Match / Equator / Peace coffee, and small appliances. Built-in or apartment-installed stove, refrigerator, shower fixtures, tub, toilet bowls, garbage disposal, faucet, dishwasher, and apartment door hardware are not claimed.",
         "E. Petitioner's cat and all pet-related property, including the Litter-Robot gray automatic litter box, orange covered litter box, orange hard-sided pet carrier, Arm and Hammer Slide litter box, chrome cat tree or shelf frame, sisal scratching posts, KONG figure-8 toy, black automatic pet feeder, pet water fountain with green daisy lid, bowls, UV cat-urine light, Arm and Hammer pet stain and odor eliminator, veterinary records, microchip registration, medications, food, litter, carriers, and supplies.",
         "F. Petitioner's records and identity documents, including legal, identification, immigration, medical, financial, tax, insurance, employment, family, and sentimental records; books packed in the Living Room box; every notebook, journal, notepad, and handwritten note; and the videos, course files, and study recordings of what Petitioner learned over the years.",
-        "G. Phones, computers, tablets, all four MacBook Pros (including the 13-inch M2 8GB/256GB unit and its Apple box, adapter, and cable), Verizon Jetpack MiFi, DYMO LetraTag, Samsung monitors, Epson EcoTank printer, SIIG USB-C Dual 4K Docking Station with PD (JU-DK0B11-S1), black Xbox game console, keyboard, chargers, drives, DeWalt tools, Ryobi yellow-and-black cordless drill and case, Energizer lantern, screwdriver set, 3M Filtrete 12x12x1 filters, aluminum step ladder, and digital accounts and contents belonging to Petitioner, including every file, note, photo, and video on those devices.",
+        "G. Phones, computers, tablets, all four MacBook Pros (including the 13-inch M2 8GB/256GB unit and its Apple box, adapter, and cable), Verizon Jetpack MiFi, DYMO LetraTag, Samsung monitors, Epson EcoTank printer, SIIG USB-C Dual 4K Docking Station with PD (JU-DK0B11-S1), keyboard, chargers, drives, DeWalt tools, Ryobi yellow-and-black cordless drill and case, Energizer lantern, screwdriver set, 3M Filtrete 12x12x1 filters, aluminum step ladder, and digital accounts and contents belonging to Petitioner, including every file, note, photo, and video on those devices.",
         "H. All other personal property belonging to Petitioner at Respondent's residence or in Respondent's possession.",
     ]
     for line in cats:
@@ -342,8 +342,8 @@ def build_exhibit(path):
         "bowl on the island, two black faceted vases and palm stems, two brown leather poufs "
         "with white starburst stitching, two red vases and the white ceramic vase on the "
         "etagere, each dining chair, the sunburst wall mirror, the seafoam glass vase with "
-        "yellow peonies, and the brown ribbed vase, and the further photographs of the Xbox "
-        "on the media console, the three green marble slabs mounted as shelves with six silver "
+        "yellow peonies, and the brown ribbed vase, and the further photographs of "
+        "the three green marble slabs mounted as shelves with six silver "
         "brackets, the shower caddy and wooden bath brush, the white folding table, the "
         "Home Depot extra-length box, Vanicream, LUSH, the teal FOREO Luna, gua sha, rose "
         "quartz roller, and Petitioner's makeup photographed on a hotel vanity, and the further "
@@ -358,7 +358,7 @@ def build_exhibit(path):
         "in those photographs is still claimed if it is at 4400 Coney Island Drive, Frisco, "
         "Texas 75036. Retrieval is from the Frisco address only. "
         "The apartment door lock, tub, shower fixtures, built-in vanity, sink, faucet, towel rings, "
-        "blinds, over-range microwave, kitchen island cabinets, stove, ceiling lights, and refrigerator appliance in those photographs are not claimed. "
+        "blinds, over-range microwave, kitchen island cabinets, stove, ceiling lights, refrigerator appliance, and Xbox game console in those photographs are not claimed. "
         "Additional photographs may be added before the hearing.",
     )
     pdf.ln(8)

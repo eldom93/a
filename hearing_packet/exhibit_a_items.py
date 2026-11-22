@@ -113,7 +113,6 @@ SECTIONS = [
             "Framed picture leaning on the floor by the etagere.",
             "Black speaker on the media console.",
             "Black Blu-ray player or cable box on the media console.",
-            "Black Xbox game console on the media console.",
             "Oval gray-framed standing mirror with a silver round base.",
             "Gray padded backpack / carrier with chest straps.",
             "Brown leather bag next to that backpack.",
@@ -1727,7 +1726,7 @@ SECTIONS = [
         [
             "Every remaining personal-care bottle, tube, jar, compact, brush, palette, mascara, lipstick, lip gloss, eyeliner, foundation, concealer, powder, cream, serum, lotion, mist, spray, shampoo, conditioner, hair product, medication bottle, and toiletry belonging to Petitioner at the residence, whether or not the brand is readable in a photograph. This list does not shrink to a single word such as makeup. Each object is claimed.",
             "All other furniture, household goods, kitchenware, food that is Petitioner's, electronics, records, and personal property belonging to Petitioner at 4400 Coney Island Drive, Frisco, Texas 75036, or in Respondent's possession.",
-            "Apartment-installed stove, refrigerator, shower fixtures, tub, toilet bowls, garbage disposal, faucet, dishwasher, built-in bathroom vanity, towel rings, blinds, over-range microwave, kitchen island cabinets, ceiling fan, interior doors, and apartment door hardware are not claimed. The black electronic lock and metal ball knob photographed on the apartment door are apartment door hardware and are not claimed. Hotel furniture, hotel telephone, hotel lamp, hotel bed, and hotel wall art in travel photographs are not claimed.",
+            "Apartment-installed stove, refrigerator, shower fixtures, tub, toilet bowls, garbage disposal, faucet, dishwasher, built-in bathroom vanity, towel rings, blinds, over-range microwave, kitchen island cabinets, ceiling fan, interior doors, and apartment door hardware are not claimed. The black electronic lock and metal ball knob photographed on the apartment door are apartment door hardware and are not claimed. Hotel furniture, hotel telephone, hotel lamp, hotel bed, and hotel wall art in travel photographs are not claimed. The Xbox game console on the media console is not claimed.",
         ],
     ),
 ]
