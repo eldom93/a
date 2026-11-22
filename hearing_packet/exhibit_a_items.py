@@ -247,6 +247,8 @@ SECTIONS = [
             "Dark gray bath mat by the toilet.",
             "Striped hand towel on the towel ring (the ring is apartment hardware and is not claimed).",
             "White toilet stool (Squatty Potty-style). The toilet itself is not claimed.",
+            "Bidet (first). Attached to the toilet in the first bathroom. The toilet itself is not claimed.",
+            "Bidet (second). Attached to the toilet in the second bathroom. The toilet itself is not claimed.",
             "Bathroom vanity drawer: black tray, pink tube, and white bottle.",
             "Toilet brush.",
             "Clorox wipes.",
@@ -281,9 +283,11 @@ SECTIONS = [
         ],
     ),
     (
-        "Laundry products in the wicker baskets (washer and dryer not claimed)",
+        "Washer, dryer, and laundry products in the wicker baskets",
         [
-            "Wicker baskets sitting on the laundry machines (the baskets are claimed; the machines are not).",
+            "White GE top-load washer.",
+            "White GE electric dryer.",
+            "Wicker baskets sitting on the laundry machines.",
             "Tide PODS jug.",
             "White detergent jug.",
             "Pink Gain / scent-bead bottle with brush cap.",
@@ -752,7 +756,7 @@ SECTIONS = [
         [
             "Every remaining personal-care bottle, tube, jar, compact, brush, palette, mascara, lipstick, lip gloss, eyeliner, foundation, concealer, powder, cream, serum, lotion, mist, spray, shampoo, conditioner, hair product, medication bottle, and toiletry belonging to Petitioner at the residence, whether or not the brand is readable in a photograph. This list does not shrink to a single word such as makeup. Each object is claimed.",
             "All other furniture, household goods, kitchenware, food that is Petitioner's, electronics, records, and personal property belonging to Petitioner at 4400 Coney Island Drive, Frisco, Texas 75036, or in Respondent's possession.",
-            "Apartment-installed washer, dryer, stove, refrigerator, shower fixtures, and apartment door hardware are not claimed.",
+            "Apartment-installed stove, refrigerator, shower fixtures, tub, toilet bowls, garbage disposal, and apartment door hardware are not claimed.",
         ],
     ),
 ]

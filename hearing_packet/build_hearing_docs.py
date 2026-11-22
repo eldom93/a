@@ -239,8 +239,9 @@ def build_exhibit(path):
         pdf,
         "Other rooms: dresser, mirror, clothing, bags, bathroom products, hair tools, kitchen, "
         "pantry, living room, and personal effects shown in Petitioner's photographs, and "
-        "any other property of Petitioner in the residence. Apartment-installed washer, "
-        "dryer, stove, refrigerator, and shower fixtures are not claimed.",
+        "any other property of Petitioner in the residence. Petitioner claims the white GE "
+        "washer, the white GE dryer, and both bidets. Apartment-installed stove, refrigerator, "
+        "shower fixtures, tub, toilet bowls, and apartment door hardware are not claimed.",
     )
     body(
         pdf,
@@ -257,9 +258,9 @@ def build_exhibit(path):
     heading(pdf, "Category awards requested")
     cats = [
         "A. All of Petitioner's clothing, shoes, jewelry, and personal effects at Respondent's residence, whether or not separately photographed, including every labeled bag and box in the closet photographs.",
-        "B. All furniture and household goods belonging to Petitioner at Respondent's residence, including the dresser, bed and white bedding, pair of nightstands, lamp, desks, office chair, dining table and chairs, tufted bench, area rugs, sofas, marble-look coffee table, glass coffee table, poufs, full-length wood-framed floor mirror, black-framed wall mirror, carved-wood cabinet, nested console tables, folding tray table, whiteboard and rolling easel, metal etagere, mirrored side tables, laundry sorter, rolling shoe rack, media console, green shelves and brackets, television mount, robot vacuum, and any other furniture, furnishings, or household items that are Petitioner's.",
+        "B. All furniture and household goods belonging to Petitioner at Respondent's residence, including the dresser, bed and white bedding, pair of nightstands, lamp, desks, office chair, dining table and chairs, tufted bench, area rugs, sofas, marble-look coffee table, glass coffee table, poufs, full-length wood-framed floor mirror, black-framed wall mirror, carved-wood cabinet, nested console tables, folding tray table, whiteboard and rolling easel, metal etagere, mirrored side tables, laundry sorter, rolling shoe rack, media console, green shelves and brackets, television mount, robot vacuum, white GE washer, white GE dryer, both bidets, and any other furniture, furnishings, or household items that are Petitioner's.",
         "C. Every personal-care bottle, tube, jar, compact, brush, hair tool, hair product, facial device, and medication belonging to Petitioner, including each object listed above. This category is not a single grouped label.",
-        "D. Kitchenware belonging to Petitioner: Dutch oven, KitchenAid stand mixer, espresso/coffee machine, toaster oven, SodaStream, air fryer, hand mixer, silverware, cooking utensils, blender, pans, bakeware, food storage, dishes, glassware, kettles, pantry food that is Petitioner's, and small appliances. Built-in or apartment-installed kitchen and laundry appliances are not claimed.",
+        "D. Kitchenware belonging to Petitioner: Dutch oven, KitchenAid stand mixer, espresso/coffee machine, toaster oven, SodaStream, air fryer, hand mixer, silverware, cooking utensils, blender, pans, bakeware, food storage, dishes, glassware, kettles, pantry food that is Petitioner's, and small appliances. Built-in or apartment-installed stove, refrigerator, shower fixtures, tub, toilet bowls, and apartment door hardware are not claimed.",
         "E. Petitioner's cat and all pet-related property, including the automatic litter box, orange covered litter box, chrome cat tree or shelf frame, toys, bowls, veterinary records, microchip registration, medications, food, litter, carriers, and supplies.",
         "F. Petitioner's records and identity documents, including legal, identification, immigration, medical, financial, tax, insurance, employment, family, and sentimental records, and books packed in the Living Room box.",
         "G. Phones, computers, tablets, laptop, monitor, printer, keyboard, chargers, drives, and digital accounts and contents belonging to Petitioner.",
