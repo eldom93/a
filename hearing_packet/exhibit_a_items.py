@@ -703,6 +703,8 @@ SECTIONS = [
             "Teal cup on the desk.",
             "Pens on the desk.",
             "Chargers on and around the desk.",
+            "Dark gray Verizon Jetpack MiFi mobile hotspot.",
+            "White charging cable for the Verizon Jetpack.",
         ],
     ),
     (
