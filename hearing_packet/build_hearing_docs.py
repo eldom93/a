@@ -257,13 +257,13 @@ def build_exhibit(path):
         pdf.ln(1)
     heading(pdf, "Category awards requested")
     cats = [
-        "A. All of Petitioner's clothing, shoes, jewelry, and personal effects at Respondent's residence, whether or not separately photographed, including every labeled bag and box in the closet photographs.",
+        "A. All of Petitioner's clothing, shoes, jewelry, and personal effects at Respondent's residence, whether or not separately photographed, including the pair of dark-brown leather tall riding boots and every labeled bag and box in the closet photographs.",
         "B. All furniture and household goods belonging to Petitioner at Respondent's residence, including the dresser, bed and white bedding, pair of nightstands, lamp, desks, office chair, dining table and chairs, tufted bench, area rugs, sofas, marble-look coffee table, glass coffee table, poufs, full-length wood-framed floor mirror, black-framed wall mirror, carved-wood cabinet, nested console tables, folding tray table, whiteboard and rolling easel, metal etagere, mirrored side tables, laundry sorter, rolling shoe rack, media console, green shelves, brackets and screws, green marble slab, television mount, robot vacuum, white GE washer, white GE dryer, both bidets, and any other furniture, furnishings, or household items that are Petitioner's.",
-        "C. Every personal-care bottle, tube, jar, compact, brush, hair tool, hair product, facial device, and medication belonging to Petitioner, including each object listed above. This category is not a single grouped label.",
-        "D. Kitchenware belonging to Petitioner: Dutch oven, KitchenAid stand mixer, espresso/coffee machine, toaster oven, SodaStream, air fryer, hand mixer, silverware, cooking utensils, blender, All-Clad pans, bakeware, food storage, dishes, glassware, kettles, 2022 pantry non-perishable food, 2022 laundry products, baskets and bins, and small appliances. Built-in or apartment-installed stove, refrigerator, shower fixtures, tub, toilet bowls, and apartment door hardware are not claimed.",
+        "C. Every personal-care bottle, tube, jar, compact, brush, hair tool, hair product, facial device, and medication belonging to Petitioner, including the Dyson Supersonic Vinca Blue and Rose dryer in its box, the Omron blood-pressure monitor, and each object listed above. This category is not a single grouped label.",
+        "D. Kitchenware belonging to Petitioner: Dutch oven, KitchenAid stand mixer, espresso/coffee machine, toaster oven, SodaStream, air fryer, hand mixer, silverware, cooking utensils, blender, All-Clad pans, bakeware, food storage, dishes, glassware, kettles, packed-pantry food named product-by-product (Barnana, KIND, bubly, La Croix, Ozarka, Dasani, Bounty 30 Triples, Hunt's, Thai Kitchen, and the rest), 2022 pantry non-perishable food, 2022 laundry products, baskets and bins, Indian Coffee House / Match / Equator / Peace coffee, and small appliances. Built-in or apartment-installed stove, refrigerator, shower fixtures, tub, toilet bowls, and apartment door hardware are not claimed.",
         "E. Petitioner's cat and all pet-related property, including the automatic litter box, orange covered litter box, chrome cat tree or shelf frame, toys, bowls, UV cat-urine light, Arm and Hammer pet stain and odor eliminator, veterinary records, microchip registration, medications, food, litter, carriers, and supplies.",
         "F. Petitioner's records and identity documents, including legal, identification, immigration, medical, financial, tax, insurance, employment, family, and sentimental records; books packed in the Living Room box; every notebook, journal, notepad, and handwritten note; and the videos, course files, and study recordings of what Petitioner learned over the years.",
-        "G. Phones, computers, tablets, both MacBook Pros, Verizon Jetpack MiFi, monitor, printer, keyboard, chargers, drives, DeWalt tools, and digital accounts and contents belonging to Petitioner, including every file, note, photo, and video on those devices.",
+        "G. Phones, computers, tablets, all four MacBook Pros (including the 13-inch M2 8GB/256GB unit and its Apple box, adapter, and cable), Verizon Jetpack MiFi, DYMO LetraTag, monitor, printer, keyboard, chargers, drives, DeWalt tools, and digital accounts and contents belonging to Petitioner, including every file, note, photo, and video on those devices.",
         "H. All other personal property belonging to Petitioner at Respondent's residence or in Respondent's possession.",
     ]
     for line in cats:
@@ -288,9 +288,11 @@ def build_exhibit(path):
         "and following are Petitioner's photographs IMG_0442 through IMG_0534 (92 images), "
         "the further photographs sent November 22, 2026 of the bedroom, closet, kitchen, "
         "cat property, tools, and living room, untitled folder 7 (110 photographs), "
-        "New Folder With Items (121 photographs), and Archive.zip (98 unique photographs "
-        "of the packed home, dated September 16, 2026). Additional photographs may be added "
-        "before the hearing.",
+        "New Folder With Items (121 photographs), Archive.zip (98 unique photographs "
+        "of the packed home, dated September 16, 2026), and the further November 22, 2026 "
+        "photographs of the four MacBook Pros, packed pantry, 2022 laundry baskets, Dyson "
+        "Supersonic, Omron monitor, DYMO LetraTag, Sportheer weights, riding boots, and coffee. "
+        "Additional photographs may be added before the hearing.",
     )
     pdf.ln(8)
     pdf.set_font("Times", "", 11)
